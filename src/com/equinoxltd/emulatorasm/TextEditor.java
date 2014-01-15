@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by werton on 15.01.14.
  */
-public class TextEditor {
+public class TextEditor extends JFrame {
     private JPanel textEditor;
     private JButton run;
     private JButton debug;
@@ -20,6 +20,11 @@ public class TextEditor {
     private JMenuItem itemExit;
 
     public TextEditor() {
+        super("TextEditor");
+        setContentPane(this.textEditor);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+
         this.menuBar = new JMenuBar();
         this.menuFile = new JMenu("File");
 
@@ -37,6 +42,8 @@ public class TextEditor {
 
         this.menuBar.add(this.menuFile);
 
+        setJMenuBar(this.menuBar);
+
         run.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -53,11 +60,6 @@ public class TextEditor {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("TextEditor");
-        frame.setContentPane(new TextEditor().textEditor);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        //frame.setJMenuBar();
-        frame.setVisible(true);
+        new TextEditor().setVisible(true);
     }
 }
