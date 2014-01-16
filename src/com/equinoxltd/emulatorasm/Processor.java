@@ -8,7 +8,9 @@ package com.equinoxltd.emulatorasm;
 public class Processor {
     private Command _comm;
     private CommandProcessor _commproc;
-    public int EIP = 0;
+    public static int EIP = 0;
+    // регистры общего назначения с прямым доступом, для упрощения работы, массив не катит, лишние условия
+    public static int EAX, EBX, ECX, EDX, ESI, EDI, EBP, ESP;
 
     public Processor() {
         _commproc = new CommandProcessor();
@@ -19,7 +21,8 @@ public class Processor {
         // загрузка команды по ее коду и исполнение
         Command comm = _commproc.getCommandByCode(code);
         // backdoor for fill operands list
-        Object operands[] = new Object[comm.size - 1];
+        int operands[] = new int[2];
+        //int operands[] = new int[comm.size - 1];
         for (int i = 0; i < comm.size - 1; ++i)
             operands[i] = Memory.mem[EIP + i + 1];
         //-----------
