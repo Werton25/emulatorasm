@@ -4,15 +4,10 @@ import com.equinoxltd.emulatorasm.Command;
 import com.equinoxltd.emulatorasm.Memory;
 
 /**
- * Created by werton on 16.01.14.
- *
- * Вроде так, но я не уверен.
- * Команда add
- * Syntax: ADD idx, idx
- *         ADD var, var
+ * Created by werton on 17.01.14.
  */
-public class Command0 extends Command {
-    public Command0(String name, int code, Object[] operands) {
+public class Command25 extends Command {
+    public Command25(String name, int code, Object[] operands) {
         super(name, code, operands);
     }
 
@@ -28,6 +23,6 @@ public class Command0 extends Command {
             idx0 = Memory.getIndexByName(op0);
             idx1 = Memory.getIndexByName((String) operands[1]);
         }
-        Memory.mem[idx0] += Memory.mem[idx1];
+        Memory.mem[idx0] -= Memory.mem[idx1];
     }
 }
