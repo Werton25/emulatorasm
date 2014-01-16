@@ -65,3 +65,4 @@
 64 byte 1 1
 65 dword 1 1
 66 qword 1 1
+67 print 1

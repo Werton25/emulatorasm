@@ -8,17 +8,36 @@ package com.equinoxltd.emulatorasm;
 public class Processor {
     private Command _comm;
     private CommandProcessor _commproc;
+    public int EIP = 0;
 
     public Processor() {
         _commproc = new CommandProcessor();
         _commproc.loadListOfCommands();
     }
 
-    public void runCommand(int code) {
+    public int runCommand(int code) {
         // загрузка команды по ее коду и исполнение
         Command comm = _commproc.getCommandByCode(code);
         // backdoor for fill operands list
+        Object operands[] = new Object[comm.size - 1];
+        for (int i = 0; i < comm.size - 1; ++i)
+            operands[i] = Memory.mem[EIP + i + 1];
         //-----------
+        comm.setOperands(operands);
         comm.execute();
+        return comm.size;
+    }
+
+    public Command getCommand(String name) {
+        return _commproc.getCommandByName(name);
+    }
+
+    public boolean hasCommand(String name) {
+        try {
+            _commproc.getCommandByName(name);
+            return true;
+        } catch (Error e) {
+            return false;
+        }
     }
 }

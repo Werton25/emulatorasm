@@ -46,6 +46,10 @@ public class Memory {
     }
 
     // function for printing memory
+    public static void dump() {
+        Controller.log(Arrays.toString(Memory.mem));
+    }
+
     @Override
     public String toString() {
         return Arrays.toString(Memory.mem);
