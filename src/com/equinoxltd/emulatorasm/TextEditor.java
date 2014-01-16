@@ -110,6 +110,7 @@ public class TextEditor extends JFrame {
             public void actionPerformed(ActionEvent actionEvent) {
                 textPane1.selectAll();
                 textPane1.cut();
+                tabbedPane1.setVisible(false);
             }
         });
     }
@@ -129,7 +130,7 @@ public class TextEditor extends JFrame {
 
         try {
             fileInputStream = new FileInputStream(this.fullPath); // "связываем" объект класса FileInputStream
-            //  c файлом, полный путь к которму хранится в переменной PolniiPut
+            //  c файлом, полный путь к которму хранится в переменной fullPath
             buf = new byte[fileInputStream.available()]; // создаем массив байтов (по количеству данных в файле (они считываются из входного потока))
             fileInputStream.read(buf);// сохраняем прочитанные данные в массиве байтов buf
             szStr = new String(buf);
@@ -146,7 +147,7 @@ public class TextEditor extends JFrame {
             while(st.hasMoreElements()) {
                 szStr = new String((String)st.nextElement());// получаем очередной элемент токенайзера и преобразуем его в строку
                 this.textPane1.setText(szStr + "\r\n");// добавляем полученную строку к текстовой области
-            }//end_while
+            }
 
             // Цикл отработал, всё содержимое файла отображается в текстовой области
             fileInputStream.close();// FileInputStream нам больше не нужен
