@@ -17,6 +17,8 @@ public class Processor {
     public void runCommand(int code) {
         // загрузка команды по ее коду и исполнение
         Command comm = _commproc.getCommandByCode(code);
+        // backdoor for fill operands list
+        //-----------
         comm.execute();
     }
 }

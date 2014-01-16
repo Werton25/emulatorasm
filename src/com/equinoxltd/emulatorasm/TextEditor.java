@@ -92,6 +92,7 @@ public class TextEditor extends JFrame {
                 System.out.print(textPane1.getText());
                 tabbedPane1.setVisible(true);
                 textPane2.setText(textPane1.getText());
+                Controller controller = new Controller();
             }
         });
 
