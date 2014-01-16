@@ -6,7 +6,7 @@ import com.equinoxltd.emulatorasm.Memory;
 /**
  * Created by werton on 17.01.14.
  * INC command
- * Syntax: INC idx idx
+ * Syntax: INC idx
  */
 public class Command6 extends Command {
     public Command6(String name, int code, int[] operands) {
@@ -15,7 +15,7 @@ public class Command6 extends Command {
 
     @Override
     public void execute() {
-        int idx0 = (Integer) operands[0];
+        int idx0 = operands[0];
         Memory.mem[idx0] += 1;
     }
 }

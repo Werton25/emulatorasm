@@ -12,13 +12,16 @@ import java.util.Map;
 public class Memory {
     private int _mem_size = 0;
     public static int mem[];
+    // map for associated variables
     public static Map<String, Integer> vars;
-    // регистры общего назначения с прямым доступом, для упрощения работы, массив не катит, лишние условия
-    public static int EAX, EBX, ECX, EDX, ESI, EDI, EBP, ESP;
+    // map for associated labels
+    public static Map<String, Integer> labels;
 
     public Memory(int size) {
         this._mem_size = size;
         Memory.vars = new HashMap<String, Integer>(size);
+        labels = new HashMap<String, Integer>(size);
+
         Memory.mem = new int[size];
         for (int i = 0; i < size; ++i)
             Memory.mem[i] = -1;
@@ -33,9 +36,18 @@ public class Memory {
             return vars.get(name);
         throw new Error("Not associated variable!");
     }
-
     public static void setNameByIndex(String name, Integer idx) {
         Memory.vars.put(name, idx);
+    }
+
+
+    public static int getLabelIndexByName(String name) {
+        if (labels.containsKey(name))
+            return labels.get(name);
+        throw new Error("Not associated label!");
+    }
+    public static void addLabel(String name, Integer idx) {
+        Memory.labels.put(name, idx);
     }
 
     public static int getFreeMemoryIndex() {

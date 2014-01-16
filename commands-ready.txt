@@ -14,7 +14,7 @@
 13 jge 1 1
 14 jl 1 1
 15 jle 1 1
-16 jmp
+16 jmp 1
 17 jne 1 1
 18 mov 1 1
 19 mul 1 1

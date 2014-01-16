@@ -23,9 +23,13 @@ public class Controller {
     }
     public void run() {
         preprocessText();
+        int idx = 0;
         // while program is not ended
-        while (Memory.mem[_proc.EIP] != -1) {
-            _proc.EIP += _proc.runCommand(Memory.mem[_proc.EIP]);
+        while (Memory.mem[idx] != -1) {
+            int size = _proc.runCommand(Memory.mem[idx]);
+            if (Processor.EIP >= idx)
+                Processor.EIP += size;
+            idx = Processor.EIP;
         }
     }
 
@@ -39,6 +43,19 @@ public class Controller {
                 // in every word
                 // our assembler is case-independent
                 word = word.toLowerCase();
+                if (word.substring(0, 1).compareTo("@") == 0) {
+                    // this is label
+                    try {
+                        int idx = Memory.getLabelIndexByName(word);
+                        // wow, this label exists! add link to memory
+                        int pos = Memory.getFreeMemoryIndex();
+                        Memory.mem[pos] = idx;
+                    } catch (Error e) {
+                        // this label is new, create alliance
+                        int pos = Memory.getFreeMemoryIndex();
+                        Memory.addLabel(word, pos);
+                    }
+                } else
                 if (!word.matches("[0-9]"))
                     try {
                         // trying to get one of the errors -
