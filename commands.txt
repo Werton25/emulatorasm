@@ -1,5 +1,4 @@
-add and call cmp dec div idiv imul in inc ja jae jb jbe jc jcxz je jg jge jl jle jmp jna jnae jnb jnbe jnc jne jng jnge jnl jnle jno jnp jns jnz jo jp jpe jpo js jz mov mul neg out pop popf push pushf ret retf sub
-f2xm1 fabs fadd faddp fchs fcom fcomp fdiv fdivp fdivr fiadd ficom ficomp fidiv fidivr fimul finit fisub fisubr fld fld1 fldl2e fldl2t fldlg2 fldln2 fldpi fldz fmul fmulp frndint fscale fsqrt fst fstp fsub fsubp fsubr fsubrp fyl2x fyl2xp1 fcos fsin fcomi
-ah al ax bh bl bp bx ch cl cs cx dh di dl dx eax ebp ebx ecx edi edx es esi esp si sp st st0 st1 st2 st3 st4 st5 st6 st7
+add call cmp dec div in inc ja jae jb jbe je jg jge jl jle jmp jne mov mul neg out pop push ret sub
+fabs fadd fchs fcom fcomp fdiv finit fld fld1 fldl2e fldlg2 fldln2 fldpi fldz fmul frndint fsqrt fst fstp fsub fyl2x fcos fsin
 .data .data? .code db dd dq dup dw end endp invoke offset proc ptr
 ? byte dword qword
