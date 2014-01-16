@@ -9,7 +9,7 @@ import com.equinoxltd.emulatorasm.Controller;
  * будущая реализация команды AND
  */
 public class Command1 extends Command {
-    public Command1(String name, int code, Object[] operands) {
+    public Command1(String name, int code, int[] operands) {
         super(name, code, operands);
     }
     @Override

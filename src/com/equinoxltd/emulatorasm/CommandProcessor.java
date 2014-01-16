@@ -24,14 +24,14 @@ public class CommandProcessor {
                 String line = sc.nextLine();
                 String comms[] = line.split(" ");
                 int code = Integer.parseInt(comms[0]);
-                Object operands[] = new Object[comms.length - 2];
+                int operands[] = new int[comms.length - 2];
                 for (int i = 2; i < comms.length; ++i)
                     operands[i-2] = Integer.parseInt(comms[i]);
 
                 // using reflection to determine which class we use
                 // даже не пытайся это понять, ну, попытка не пытка, но пояснять не буду, гугли Reflection
 
-                Class[] params = new Class[] {String.class, int.class, Object[].class};
+                Class[] params = new Class[] {String.class, int.class, int[].class};
                 Command mycomm;
                 try {
                     mycomm = (Command) Class.forName("com.equinoxltd.emulatorasm.commands.Command" + code).getConstructor(params).newInstance(comms[1], code, operands);
