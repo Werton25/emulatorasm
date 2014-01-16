@@ -19,19 +19,9 @@ public class Command0 extends Command {
 
     @Override
     public void execute() {
-        //Controller.output("Command 0 example");
-        String op0 = operands[0].toString();
-        Controller.log(op0);
-        int idx0, idx1;
-        if (op0.matches("[0-9]")) {
-            // indexes
-            idx0 = (Integer) operands[0];
-            idx1 = (Integer) operands[1];
-            Controller.log("Indexes found: " + idx0 + ", " + idx1);
-        } else {
-            idx0 = Memory.getIndexByName(op0);
-            idx1 = Memory.getIndexByName((String) operands[1]);
-        }
+        int idx0 = Integer.parseInt(operands[0].toString());
+        int idx1 = Integer.parseInt(operands[1].toString());
+        //Controller.log("Indexes found: " + idx0 + ", " + idx1);
         Memory.mem[idx0] += Memory.mem[idx1];
     }
 }
