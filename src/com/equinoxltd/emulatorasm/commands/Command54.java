@@ -8,7 +8,7 @@ import com.equinoxltd.emulatorasm.Memory;
  * command 54 is for dq
  */
 public class Command54 extends Command {
-    public Command54(String name, int code, Object[] operands) {
+    public Command54(String name, int code, int[] operands) {
         super(name, code, operands);
     }
 
@@ -27,8 +27,8 @@ public class Command54 extends Command {
         // | else Memory.mem[idx] = 0;
         // -----------------------------------------------
 
-        int addr = Integer.parseInt(operands[0].toString());
-        int val = Integer.parseInt(operands[1].toString());
+        int addr = operands[0];
+        int val = operands[1];
         Memory.mem[addr] = val;
     }
 }

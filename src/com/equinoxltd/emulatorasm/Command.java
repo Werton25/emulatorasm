@@ -8,17 +8,17 @@ import java.util.Arrays;
 public class Command extends AbstractCommand {
     public String name;
     public int code;
-    public Object operands[];
+    public int operands[];
     public int size;
 
-    public Command(String name, int code, Object[] operands) {
+    public Command(String name, int code, int[] operands) {
         this.name = name;
         this.code = code;
         this.setOperands(operands);
         this.size = this.operands.length + 1;
     }
 
-    public void setOperands(Object[] operands) {
+    public void setOperands(int[] operands) {
         this.operands = operands;
     }
 
