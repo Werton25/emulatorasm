@@ -15,8 +15,8 @@ public class Command68 extends Command {
 
     @Override
     public void execute() {
-        int idx0 = (Integer) Math.abs(operands[0]) + 1;
-        int idx1 = (Integer) Math.abs(operands[1]) + 1;
+        int idx0 = (Integer) Math.abs(operands[0]) - 1;
+        int idx1 = (Integer) Math.abs(operands[1]) - 1;
         Processor.stack.st[idx0] += Processor.stack.st[idx1];
     }
 }
