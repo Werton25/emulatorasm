@@ -1,0 +1,73 @@
+0 add 1 1
+1 fprint
+2 cmp 1 1
+3 dec 1
+4 div 1 1
+5 input 1
+6 inc 1
+7 ja 1 1
+8 jae 1 1
+9 jb 1
+10 jbe 1
+11 je 1
+12 jg 1
+13 jge 1
+14 jl 1 1
+15 jle 1 1
+16 jmp 1
+17 jne 1
+18 mov 1 1
+19 mul 1 1
+20 neg 1
+21 out 1 1
+22 pop 1 1
+23 push 1 1
+24 ret 1 1
+25 sub 1 1
+26 fabs
+27 fadd 1
+28 fchs
+29 fcom 1 1
+30 fcomp 1 1
+31 fdiv 1
+32 finit 1 1
+33 fld 1
+34 fld1
+35 fldl2e
+36 fldlg2
+37 fldln2
+38 fldpi
+39 fldz
+40 fmul 1
+41 frndint 1 1
+42 fsqrt
+43 fst 1
+44 fstp 1
+45 fsub 1
+46 fyl2x
+47 fcos
+48 fsin
+49 .data 1 1
+50 .data? 1 1
+51 .code 1 1
+52 db 1 1
+53 dd 1 1
+54 dq 1 1
+55 dup 1 1
+56 dw 1 1
+57 end 1 1
+58 endp 1 1
+59 invoke 1 1
+60 offset 1 1
+61 proc 1 1
+62 ptr 1 1
+63 ? 1 1
+64 byte 1 1
+65 dword 1 1
+66 qword 1 1
+67 print 1
+68 faddst 1 1
+69 fsubst 1 1
+70 fmulst 1 1
+71 fdivst 1 1
+72 fcomz 1

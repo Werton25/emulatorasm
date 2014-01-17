@@ -1,0 +1,4 @@
+add call cmp dec div in inc ja jae jb jbe je jg jge jl jle jmp jne mov mul neg out pop push ret sub
+fabs fadd fchs fcom fcomp fdiv finit fld fld1 fldl2e fldlg2 fldln2 fldpi fldz fmul frndint fsqrt fst fstp fsub fyl2x fcos fsin
+.data .data? .code db dd dq dup dw end endp invoke offset proc ptr
+? byte dword qword
