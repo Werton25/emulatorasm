@@ -16,6 +16,7 @@ public class Controller {
 
     public Controller() {
         _proc = new Processor();
+        Processor.EIP = 0;
         _mem = new Memory(1024);
         //code to run
         //_proc.runCommand(1);
@@ -56,7 +57,8 @@ public class Controller {
                         Memory.addLabel(word, pos);
                     }
                 } else
-                if (!word.matches("[0-9]"))
+                // if it's not a digit parameter
+                if (!word.matches("[0-9]+"))
                     try {
                         // trying to get one of the errors -
                         // if it's not command and not assoc. var
@@ -65,11 +67,20 @@ public class Controller {
                             int idx = Memory.getFreeMemoryIndex();
                             Memory.mem[idx] = _proc.getCommand(word).code;
                         } else {
-                            int existingIndex = Memory.getIndexByName(word);
-                            // here we have the index of the existing variable
-                            // add it as a param to command
-                            int idx = Memory.getFreeMemoryIndex();
-                            Memory.mem[idx] = existingIndex;
+                            //make sure it's not stack!
+                            if (word.matches("st\\(.\\)")) {
+                                //wow, stack found!
+                                String number = word.split("st\\(")[1].substring(0, 1);
+                                int idx = Memory.getFreeMemoryIndex();
+                                Memory.mem[idx] = -Integer.parseInt(number) - 1;
+                            } else {
+                                //memory, 100%
+                                int existingIndex = Memory.getIndexByName(word);
+                                // here we have the index of the existing variable
+                                // add it as a param to command
+                                int idx = Memory.getFreeMemoryIndex();
+                                Memory.mem[idx] = existingIndex;
+                            }
                         }
                     } catch (Error e) {
                         // finally, allocating memory
