@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.StringTokenizer;
 /**
  * Created by werton on 15.01.14.
  */
-public class TextEditor extends JFrame {
+public class TextEditor extends JFrame implements Runnable {
     private JPanel textEditor;
     private JButton run;
     private JButton debug;
@@ -30,6 +31,9 @@ public class TextEditor extends JFrame {
     private JMenuItem itemSaveAs;
     private JMenuItem itemExit;
     private String fullPath;
+
+    public Object lock = new Object();
+    public Thread controllerThread;
 
     public static TextEditor runningApp;
 
@@ -93,9 +97,9 @@ public class TextEditor extends JFrame {
             public void actionPerformed(ActionEvent actionEvent) {
                 System.out.print(textPane1.getText());
                 tabbedPane1.setVisible(true);
-                Controller controller = new Controller();
-                controller.programToProcess = textPane1.getText();
-                controller.run();
+                //textPane2.setText(textPane1.getText());
+                controllerThread = new Thread(TextEditor.runningApp);
+                controllerThread.start();
             }
         });
 
@@ -114,6 +118,13 @@ public class TextEditor extends JFrame {
                 tabbedPane1.setVisible(false);
             }
         });
+    }
+
+    @Override
+    public void run() {
+        Controller controller = new Controller();
+        controller.programToProcess = textPane1.getText();
+        controller.run();
     }
 
     public void openFile() {
@@ -157,9 +168,26 @@ public class TextEditor extends JFrame {
         }
     }
     public void setConsoleText(String txt) {
-        String tmp = textPane2.getText().trim();
-        textPane2.setText(tmp + "\n" + txt);
+        String oldText = textPane2.getText();
+        textPane2.setText(oldText.trim() + "\n" + txt);
     }
+
+    public String getConsoleText() {
+        Waiter w = new Waiter();
+        Thread t = new Thread(w);
+        String txt = "";
+        t.start();
+        try {
+            t.join();
+            synchronized (lock) {
+                txt = w.getString();
+            }
+        } catch (InterruptedException e) {
+            Controller.log("Wow, thread error!");
+        }
+        return txt;
+    }
+
     public void saveFile() {
         FileOutputStream fileOutputStream;//FileOutputStream - для записи данных в файлы
         String sz = this.textPane1.getText(); // всё содержимое текстовой области помещаем в строку
@@ -194,5 +222,29 @@ public class TextEditor extends JFrame {
     public static void main(String[] args) {
         TextEditor.runningApp = new TextEditor();
         TextEditor.runningApp.setVisible(true);
+    }
+
+    class Waiter implements Runnable {
+        String _res = "";
+        @Override
+        public void run() {
+            try {
+                synchronized (lock) {
+                    while (true) {
+                        _res = textPane2.getText();
+                        //System.out.println("Text:" + _res);
+                        //System.out.println("Check1:" + (_res.trim().compareTo("") != 0));
+                        //System.out.println("Check2:" + (_res.endsWith("\n")));
+                        if (_res.trim().compareTo("") != 0 && _res.endsWith("\n")) break;
+                        Thread.sleep(100);
+                    }
+                }
+            } catch (Exception e) {
+                Controller.log("Waiter error!");
+            }
+        }
+        public String getString() {
+            return _res.trim();
+        }
     }
 }
