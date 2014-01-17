@@ -33,19 +33,47 @@ public class Controller {
             idx = Processor.EIP;
         }
     }
+    public void searchForThisLabelOnNewLine(String labelName) {
+        String lines[] = programToProcess.split("\n");
+        int wordNumber = 0;
+        int pos = 0;
+        for (String line : lines) {
+            // searching in every line
+            int wordsOnLine = 0;
+            String words[] = line.trim().split(" ");
+            for (String word : words) {
+                ++wordNumber;
+                ++wordsOnLine;
+                word = word.trim().toLowerCase();
+                if (word.substring(0, 1).compareTo("@") == 0 && wordsOnLine == 1)
+                    --wordNumber;
+                if (word.compareTo(labelName) == 0 && wordsOnLine == 1) {
+                    // wow, we found our label!
+                    pos = wordNumber;
 
+                }
+            }
+        }
+        Controller.log("Adding label " + labelName + " to pos " + pos);
+        Memory.addLabel(labelName, pos);
+    }
     public void preprocessText() {
         // searching for any word which is not command
         String lines[] = programToProcess.split("\n");
         for (String line : lines) {
             // searching in every line
             String words[] = line.trim().split(" ");
+            int wordNumber = 0;
             for (String word : words) {
                 // in every word
                 // our assembler is case-independent
                 word = word.toLowerCase();
+                ++wordNumber;
                 if (word.substring(0, 1).compareTo("@") == 0) {
                     // this is label
+                    // add check if it's not first
+                    if (wordNumber != 1 && !Memory.hasLabel(word))
+                        searchForThisLabelOnNewLine(word);
                     try {
                         int idx = Memory.getLabelIndexByName(word);
                         // wow, this label exists! add link to memory
