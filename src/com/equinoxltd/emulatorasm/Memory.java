@@ -49,6 +49,14 @@ public class Memory {
     public static void addLabel(String name, Integer idx) {
         Memory.labels.put(name, idx);
     }
+    public static boolean hasLabel(String name) {
+        try {
+            getLabelIndexByName(name);
+            return true;
+        } catch (Error e) {
+            return false;
+        }
+    }
 
     public static int getFreeMemoryIndex() {
         for (int i = 0; i < Memory.mem.length; ++i)

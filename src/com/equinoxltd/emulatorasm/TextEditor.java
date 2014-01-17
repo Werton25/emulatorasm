@@ -158,7 +158,8 @@ public class TextEditor extends JFrame implements Runnable {
             // Цикл будет работать, пока находятся новые "метки" - символы (\r\n)
             while(st.hasMoreElements()) {
                 szStr = new String((String)st.nextElement());// получаем очередной элемент токенайзера и преобразуем его в строку
-                this.textPane1.setText(szStr + "\r\n");// добавляем полученную строку к текстовой области
+                String oldText = this.textPane1.getText().trim() + "\n";
+                this.textPane1.setText(oldText + szStr + "\r\n");// добавляем полученную строку к текстовой области
             }
 
             // Цикл отработал, всё содержимое файла отображается в текстовой области

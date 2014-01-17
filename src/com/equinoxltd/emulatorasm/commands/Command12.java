@@ -16,7 +16,7 @@ public class Command12 extends Command {
     @Override
     public void execute() {
         int fl = Processor.FLAGS;
-        if ((fl & 1 << 7) == 0 && (fl & 1 << 6) > 0) {
+        if ((fl & 1 << 7) == 0 && (fl & 1 << 6) == 0) {
             Processor.EIP = operands[0];
             Processor.FLAGS = 0;
         }
