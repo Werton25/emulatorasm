@@ -12,6 +12,7 @@ public class Processor {
     public static Stack stack;
     // регистры общего назначения с прямым доступом, для упрощения работы, массив не катит, лишние условия
     public static int EAX, EBX, ECX, EDX, ESI, EDI, EBP, ESP;
+    public static int FLAGS = 0;
 
     public Processor() {
         _commproc = new CommandProcessor();
