@@ -2,11 +2,12 @@ package com.equinoxltd.emulatorasm.commands;
 
 import com.equinoxltd.emulatorasm.Command;
 import com.equinoxltd.emulatorasm.Controller;
+import com.equinoxltd.emulatorasm.Processor;
 
 /**
  * @author dark-wizard
- *
- * будущая реализация команды AND
+ * FPRINT command
+ * syntax: FPRINT
  */
 public class Command1 extends Command {
     public Command1(String name, int code, int[] operands) {
@@ -14,6 +15,6 @@ public class Command1 extends Command {
     }
     @Override
     public void execute() {
-        Controller.output("Command 1 example");
+        Controller.output(Processor.stack.popLeave());
     }
 }

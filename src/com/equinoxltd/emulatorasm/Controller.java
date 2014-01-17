@@ -26,7 +26,7 @@ public class Controller {
         preprocessText();
         int idx = 0;
         // while program is not ended
-        while (Memory.mem[idx] != -1) {
+        while (Memory.mem[idx] != -100) {
             int size = _proc.runCommand(Memory.mem[idx]);
             if (Processor.EIP >= idx)
                 Processor.EIP += size;
