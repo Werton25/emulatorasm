@@ -31,6 +31,8 @@ public class TextEditor extends JFrame {
     private JMenuItem itemExit;
     private String fullPath;
 
+    public static TextEditor runningApp;
+
     public TextEditor() {
         super("TextEditor");
         setContentPane(this.textEditor);
@@ -155,7 +157,9 @@ public class TextEditor extends JFrame {
             System.out.println(ex.toString());
         }
     }
-
+    public void setConsoleText(String txt) {
+        textPane2.setText(txt);
+    }
     public void saveFile() {
         FileOutputStream fileOutputStream;//FileOutputStream - для записи данных в файлы
         String sz = this.textPane1.getText(); // всё содержимое текстовой области помещаем в строку
@@ -188,6 +192,7 @@ public class TextEditor extends JFrame {
     }
 
     public static void main(String[] args) {
-        new TextEditor().setVisible(true);
+        TextEditor.runningApp = new TextEditor();
+        TextEditor.runningApp.setVisible(true);
     }
 }

@@ -96,5 +96,6 @@ public class Controller {
     // функция для вывода в обход флагу, используется для вывода важной информации
     public static void output(Object obj) {
         System.out.println(obj);
+        TextEditor.runningApp.setConsoleText(obj.toString());
     }
 }
