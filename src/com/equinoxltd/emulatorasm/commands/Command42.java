@@ -6,7 +6,7 @@ import com.equinoxltd.emulatorasm.Processor;
 /**
  * Created by werton on 17.01.14.
  *
- * Syntax: sqrt
+ * Syntax: fsqrt
  */
 public class Command42 extends Command {
     public Command42(String name, int code, int[] operands) {
