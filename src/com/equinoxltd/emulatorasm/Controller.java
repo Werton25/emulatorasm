@@ -28,7 +28,7 @@ public class Controller {
         // while program is not ended
         while (Memory.mem[idx] != -100) {
             int size = _proc.runCommand(Memory.mem[idx]);
-            if (Processor.EIP >= idx)
+            if (Processor.EIP == idx)
                 Processor.EIP += size;
             idx = Processor.EIP;
         }
@@ -77,8 +77,10 @@ public class Controller {
                     try {
                         int idx = Memory.getLabelIndexByName(word);
                         // wow, this label exists! add link to memory
-                        int pos = Memory.getFreeMemoryIndex();
-                        Memory.mem[pos] = idx;
+                        if (wordNumber != 1) {
+                            int pos = Memory.getFreeMemoryIndex();
+                            Memory.mem[pos] = idx;
+                        }
                     } catch (Error e) {
                         // this label is new, create alliance
                         int pos = Memory.getFreeMemoryIndex();
