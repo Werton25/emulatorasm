@@ -24,7 +24,7 @@ public class Memory {
 
         Memory.mem = new int[size];
         for (int i = 0; i < size; ++i)
-            Memory.mem[i] = -1;
+            Memory.mem[i] = -100;
     }
 
     public int getSize() {
@@ -52,7 +52,7 @@ public class Memory {
 
     public static int getFreeMemoryIndex() {
         for (int i = 0; i < Memory.mem.length; ++i)
-            if (Memory.mem[i] == -1)
+            if (Memory.mem[i] == -100)
                 return i;
         throw new Error("Not enough memory!");
     }

@@ -1,5 +1,7 @@
 package com.equinoxltd.emulatorasm;
 
+import java.util.Arrays;
+
 /**
  * Created by werton on 17.01.14.
  */
@@ -26,5 +28,12 @@ public class Stack {
             st[i - 1] = st[i];
         --ptr;
         return res;
+    }
+
+    @Override
+    public String toString() {
+        return "Stack{" +
+                "st=" + Arrays.toString(st) +
+                '}';
     }
 }
