@@ -93,7 +93,6 @@ public class TextEditor extends JFrame {
             public void actionPerformed(ActionEvent actionEvent) {
                 System.out.print(textPane1.getText());
                 tabbedPane1.setVisible(true);
-                textPane2.setText(textPane1.getText());
                 Controller controller = new Controller();
                 controller.programToProcess = textPane1.getText();
                 controller.run();
@@ -158,7 +157,8 @@ public class TextEditor extends JFrame {
         }
     }
     public void setConsoleText(String txt) {
-        textPane2.setText(txt);
+        String tmp = textPane2.getText().trim();
+        textPane2.setText(tmp + "\n" + txt);
     }
     public void saveFile() {
         FileOutputStream fileOutputStream;//FileOutputStream - для записи данных в файлы

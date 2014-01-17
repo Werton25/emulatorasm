@@ -9,12 +9,14 @@ public class Processor {
     private Command _comm;
     private CommandProcessor _commproc;
     public static int EIP = 0;
+    public static Stack stack;
     // регистры общего назначения с прямым доступом, для упрощения работы, массив не катит, лишние условия
     public static int EAX, EBX, ECX, EDX, ESI, EDI, EBP, ESP;
 
     public Processor() {
         _commproc = new CommandProcessor();
         _commproc.loadListOfCommands();
+        stack = new Stack(8);
     }
 
     public int runCommand(int code) {
